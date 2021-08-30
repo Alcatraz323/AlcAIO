@@ -7,12 +7,10 @@
     <string name="main_menu_3">刷新</string>
     <string name="main_menu_4">内部日志</string>
 
-    <string name="main_card_statistic_title">统计</string>
-    <string name="main_card_statistic_indicator">保护了你%d次</string>
-    <string name="main_card_history_title">历史记录</string>
-    <string name="main_card_history_indicator">查看你的被砸记录(</string>
-    <string name="main_card_profile_title">配置生效范围</string>
-    <string name="main_card_profile_indicator">%d个应用程序</string>
+    <string name="main_card_statistic_title">NFC连接</string>
+    <string name="main_card_statistic_indicator">AIO就绪</string>
+    <string name="main_card_profile_title">MCU</string>
+    <string name="main_card_profile_indicator">%d个MCU</string>
     <string name="main_card_help">帮助与支持</string>
 
     <string name="til_error_inv_param">无效参数</string>

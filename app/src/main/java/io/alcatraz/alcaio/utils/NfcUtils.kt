@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.IntentFilter.MalformedMimeTypeException
 import android.nfc.*
+import android.nfc.tech.MifareUltralight
 import android.nfc.tech.Ndef
 import android.provider.Settings
 import io.alcatraz.alcaio.LogBuff
@@ -15,6 +16,9 @@ import java.util.*
 
 class NfcUtils(activity: Activity) {
     companion object {
+        private const val MIFARE_ULTRA_LIGHT_PAGE_START_OFFSET = 4
+        private const val MIFARE_ULTRA_LIGHT_PAGE_END_OFFSET = 15
+
         lateinit var mNfcAdapter: NfcAdapter
         var mIntentFilter: Array<IntentFilter>? = null
         var mPendingIntent: PendingIntent? = null
@@ -80,6 +84,55 @@ class NfcUtils(activity: Activity) {
         fun readNFCId(intent: Intent): String {
             val tag: Tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)!!
             return byteArrayToHexString(tag.id)
+        }
+
+        fun readMifareUltraLight(intent: Intent): String {
+            val tag: Tag? = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)
+            val ultraLightTag = MifareUltralight.get(tag)
+            try {
+                ultraLightTag.connect()
+                val bytes = arrayListOf<Byte>()
+                for (currentPage
+                in MIFARE_ULTRA_LIGHT_PAGE_START_OFFSET..MIFARE_ULTRA_LIGHT_PAGE_END_OFFSET step 4) {
+                    val currentPageBytes = ultraLightTag.readPages(currentPage)
+                    bytes.addAll(currentPageBytes.asList())
+                }
+                return String(bytes.toByteArray())
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            return "Read failure, Maybe not MifareUltralight Tag or empty tag"
+        }
+
+        fun writeMifareUltraLight(intent: Intent, data: String) {
+            val tag: Tag? = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)
+            val ultraLightTag = MifareUltralight.get(tag)
+            try {
+                ultraLightTag.connect()
+                val byteArray = data.toByteArray()
+                var currentPage = MIFARE_ULTRA_LIGHT_PAGE_START_OFFSET
+                val pageBytes = ByteArray(MifareUltralight.PAGE_SIZE)
+                var byteIndex = 0
+
+                for (i in byteArray.indices) {
+                    pageBytes[byteIndex++] = byteArray[i]
+                    if (byteIndex == 4 || i == (byteArray.size - 1)) {
+                        ultraLightTag.writePage(currentPage++, pageBytes)
+                        pageBytes.forEachIndexed { index, byte ->
+                            pageBytes[index] = 0
+                        }
+                        byteIndex = 0
+                    }
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                try {
+                    ultraLightTag.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
         }
 
         private fun byteArrayToHexString(inArray: ByteArray): String {

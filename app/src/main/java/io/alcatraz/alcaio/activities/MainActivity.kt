@@ -52,7 +52,6 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
 
     private fun initViews(){
         setSupportActionBar(main_toolbar)
-        main_card_history.setOnClickListener(this)
         main_card_profile_mgr.setOnClickListener(this)
         main_profile_mgr_modify.setOnClickListener(this)
         main_card_setting.setOnClickListener(this)
