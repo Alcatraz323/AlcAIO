@@ -5,16 +5,17 @@
     <string name="main_menu_3">Refresh</string>
     <string name="main_menu_4">Internal Log</string>
     
-    <string name="main_card_statistic_title">NFC Connect</string>
-    <string name="main_card_statistic_indicator">AIO waiting…</string>
-    <string name="main_card_profile_title">Remote MCU</string>
-    <string name="main_card_profile_indicator">%d available MCU</string>
+    <string name="main_card_nfc_title">NFC Connect</string>
+    <string name="main_card_nfc_indicator">AIO waiting…</string>
+    <string name="main_card_nfc_indicator_not_supported">NFC not supported</string>
+    <string name="main_card_mcu_title">Remote MCU</string>
+    <string name="main_card_mcu_indicator">%d available MCU</string>
     <string name="main_card_help">Help and Support</string>
 
     <string name="til_error_inv_param">Invalid parameter</string>
     <string name="toast_copied">Copied</string>
     <string name="toast_perm_denied">Permission Denied</string>
-    <string name="ad_pb">Yes</string>
+    <string name="ad_pb">Ok</string>
     <string name="ad_nb">Cancel</string>
     <string name="ad_pb2">Yes</string>
     <string name="ad_nb2">No</string>
@@ -23,10 +24,25 @@
     <string name="ad_processing">Processing…</string>
     <string name="empty_view">Empty</string>
 
+    <string name="nfc_connection">NFC Status</string>
+    <string name="nfc_status_connected">Remote AIO connected\n%s (%s)</string>
+    <string name="nfc_status_connecting">Tag confirmed, connecting</string>
+    <string name="nfc_status_disconnected">No device connected</string>
+    <string name="nfc_status_unsupported_tag">Not a AlcAIO Tag</string>
+    <string name="nfc_status_unsupported_version">Remote version(%s) not supported, application api is %s</string>
+    <string name="nfc_function">Function</string>
+    <string name="nfc_api_version">Api</string>
+    <string name="nfc_remote_address">Remote address</string>
+    <string name="nfc_screen_off">Screen off</string>
+    <string name="nfc_write_entry">Write AlcAIO Tag</string>
+    <string name="nfc_mac">MAC</string>
+    <string name="nfc_name">Name</string>
+    <string name="nfc_linker">Share link</string>
+
     <!--About-->
     <string name="au_l_1">Version</string>
     <string name="au_l_2">Developer</string>
-    <string name="au_l_2_1">Alcatraz,Mr_Dennis(Coolapk)</string>
+    <string name="au_l_2_1">Alcatraz</string>
     <string name="au_l_3">Check sourcecode</string>
     <string name="au_l_4">Open source Licenses</string>
     <string name="au_l_4_1">Respect to opensource</string>

@@ -6,6 +6,7 @@ import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.os.Bundle
 import android.widget.Toast
+import io.alcatraz.alcaio.R
 import io.alcatraz.alcaio.extended.CompatWithPipeActivity
 import io.alcatraz.alcaio.utils.NfcUtils
 
@@ -14,11 +15,8 @@ class NfcActivity: CompatWithPipeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val packageManager = this.packageManager
-        val b1 = packageManager.hasSystemFeature(PackageManager.FEATURE_NFC)
-        Toast.makeText(this, "是否支持nfc：$b1", Toast.LENGTH_SHORT).show()
-
-        val nfcUtils = NfcUtils(this)
+        NfcUtils(this)
+        setContentView(R.layout.activity_nfc)
     }
 
     override fun onResume() {

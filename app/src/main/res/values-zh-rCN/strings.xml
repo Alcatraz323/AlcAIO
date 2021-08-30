@@ -7,10 +7,11 @@
     <string name="main_menu_3">刷新</string>
     <string name="main_menu_4">内部日志</string>
 
-    <string name="main_card_statistic_title">NFC连接</string>
-    <string name="main_card_statistic_indicator">AIO就绪</string>
-    <string name="main_card_profile_title">MCU</string>
-    <string name="main_card_profile_indicator">%d个MCU</string>
+    <string name="main_card_nfc_title">NFC连接</string>
+    <string name="main_card_nfc_indicator">AIO就绪</string>
+    <string name="main_card_nfc_indicator_not_supported">设备不支持NFC</string>
+    <string name="main_card_mcu_title">MCU</string>
+    <string name="main_card_mcu_indicator">%d个MCU</string>
     <string name="main_card_help">帮助与支持</string>
 
     <string name="til_error_inv_param">无效参数</string>
@@ -25,10 +26,25 @@
     <string name="ad_processing">进行中…</string>
     <string name="empty_view">无结果</string>
 
+    <string name="nfc_connection">NFC状态</string>
+    <string name="nfc_status_connected">已连接\n%s (%s)</string>
+    <string name="nfc_status_connecting">已扫描标签，正在连接</string>
+    <string name="nfc_status_disconnected">未连接</string>
+    <string name="nfc_status_unsupported_tag">非AlcAIO标签</string>
+    <string name="nfc_status_unsupported_version">不支持远端版本(%s), 本应用Api版本:%s</string>
+    <string name="nfc_function">功能</string>
+    <string name="nfc_remote_address">远程地址</string>
+    <string name="nfc_api_version">Api</string>
+    <string name="nfc_screen_off">息屏</string>
+    <string name="nfc_write_entry">写入AlcAIO标签</string>
+    <string name="nfc_mac">MAC</string>
+    <string name="nfc_name">设备名称</string>
+    <string name="nfc_linker">链接</string>
+
     <!--关于-->
     <string name="au_l_1">版本</string>
     <string name="au_l_2">开发者</string>
-    <string name="au_l_2_1">Alcatraz,Mr_Dennis(Coolapk)</string>
+    <string name="au_l_2_1">Alcatraz</string>
     <string name="au_l_3">查看源码</string>
     <string name="au_l_4">开放源代码许可</string>
     <string name="au_l_4_1">向开源致敬</string>

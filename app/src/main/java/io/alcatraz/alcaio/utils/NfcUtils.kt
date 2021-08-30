@@ -5,10 +5,12 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.IntentFilter.MalformedMimeTypeException
+import android.content.pm.PackageManager
 import android.nfc.*
 import android.nfc.tech.MifareUltralight
 import android.nfc.tech.Ndef
 import android.provider.Settings
+import android.widget.Toast
 import io.alcatraz.alcaio.LogBuff
 import java.io.IOException
 import java.nio.charset.Charset
@@ -133,6 +135,10 @@ class NfcUtils(activity: Activity) {
                     e.printStackTrace()
                 }
             }
+        }
+
+        fun isNfcSupported(activity: Activity) :Boolean{
+            return activity.packageManager.hasSystemFeature(PackageManager.FEATURE_NFC)
         }
 
         private fun byteArrayToHexString(inArray: ByteArray): String {

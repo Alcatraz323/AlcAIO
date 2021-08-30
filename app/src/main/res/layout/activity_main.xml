@@ -29,7 +29,7 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/main_card_status"
+                    android:id="@+id/main_card_nfc"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_marginStart="16dp"
@@ -43,16 +43,16 @@
                     app:cardMaxElevation="5dp">
 
                     <LinearLayout
-                        android:id="@+id/main_card_status_overlay"
+                        android:id="@+id/main_card_nfc_overlay"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/lime_colorPrimary"
+                        android:background="?attr/colorAccent"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:visibility="visible">
 
                         <ImageView
-                            android:id="@+id/main_card_status_indicator_image"
+                            android:id="@+id/main_card_nfc_indicator_image"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_margin="16dp"
@@ -71,16 +71,17 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
-                                android:text="@string/main_card_statistic_title"
+                                android:text="@string/main_card_nfc_title"
                                 android:textAllCaps="false"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.Switch"
+                                android:textColor="#FFFFFF"
                                 android:textSize="18sp" />
 
                             <TextView
-                                android:id="@+id/main_card_status_indicator"
+                                android:id="@+id/main_card_nfc_indicator"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/main_card_statistic_indicator"
+                                android:text="@string/main_card_nfc_indicator"
                                 android:textColor="#FFFFFF" />
                         </LinearLayout>
 
@@ -94,7 +95,7 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/main_card_profile_mgr"
+                        android:id="@+id/main_card_mcu_mgr"
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:layout_marginStart="16dp"
@@ -131,7 +132,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="1dp"
-                                    android:text="@string/main_card_profile_title"
+                                    android:text="@string/main_card_mcu_title"
                                     android:textAllCaps="false"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Widget.Switch"
                                     android:textSize="18sp" />
@@ -140,7 +141,7 @@
                                     android:id="@+id/main_card_profile_mgr_indicator"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="@string/main_card_profile_indicator" />
+                                    android:text="@string/main_card_mcu_indicator" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -279,7 +280,7 @@
         android:focusable="true"
         android:tint="#ffffff"
         android:visibility="visible"
-        app:layout_anchor="@id/main_card_profile_mgr"
+        app:layout_anchor="@id/main_card_mcu_mgr"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_edit_black_24dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
