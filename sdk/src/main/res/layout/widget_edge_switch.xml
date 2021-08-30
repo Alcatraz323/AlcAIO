@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/switch_back_layer"
+            android:layout_width="@dimen/min_width_for_switch"
+            android:layout_height="@dimen/min_height_for_switch"
+            android:minWidth="@dimen/min_width_for_switch"
+            android:minHeight="@dimen/min_height_for_switch"
+            app:cardBackgroundColor="@color/seek_bar_back_layer"
+            app:cardCornerRadius="@dimen/default_corner_radius_for_switch"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/switch_dot_radius"
+                        android:layout_height="@dimen/switch_dot_radius"
+                        android:elevation="@dimen/switch_dot_elevation_enabled"
+                        android:outlineAmbientShadowColor="@color/edger_theme_color"
+                        android:outlineSpotShadowColor="@color/edger_theme_color"
+                        app:cardBackgroundColor="@color/edger_theme_color"
+                        app:cardCornerRadius="@dimen/default_corner_radius_for_switch"
+                        app:cardElevation="0dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/switch_dot_radius"
+                        android:layout_height="@dimen/switch_dot_radius"
+                        android:elevation="@dimen/switch_dot_elevation_disabled"
+                        app:cardBackgroundColor="@android:color/darker_gray"
+                        app:cardCornerRadius="@dimen/default_corner_radius_for_switch"
+                        app:cardElevation="0dp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/switch_layer"
+            android:layout_width="@dimen/min_width_for_switch"
+            android:layout_height="@dimen/min_height_for_switch"
+            android:minWidth="@dimen/min_width_for_switch"
+            android:minHeight="@dimen/min_height_for_switch">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/switch_indicator"
+                android:layout_width="@dimen/switch_indicator_default_radius"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/indicator_constraint_margin"
+                android:layout_marginTop="@dimen/indicator_constraint_margin"
+                android:layout_marginEnd="@dimen/indicator_constraint_margin"
+                android:layout_marginBottom="@dimen/indicator_constraint_margin"
+                android:minHeight="@dimen/min_height_for_seekbar"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="@dimen/default_corner_radius_for_switch"
+                app:cardElevation="2dp" />
+
+        </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

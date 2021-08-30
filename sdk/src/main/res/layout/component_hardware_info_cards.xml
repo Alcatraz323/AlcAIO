@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_list_item_height"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:stateListAnimator="@animator/elevator"
+        app:cardCornerRadius="@dimen/default_corner_radius"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_margin">
+
+            <TextView
+                android:id="@+id/model_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/device_info_vendor_model"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/model_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@string/device_info_place_holder_unknown"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        android:rowCount="2">
+
+        <org.edgeration.sdk.widget.CentralImageCard
+            android:id="@+id/hardware_cpu"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginEnd="@dimen/default_margin_half"
+            android:layout_marginBottom="@dimen/default_margin_half"
+            app:enableElevateEffect="true"
+            app:iconSrc="@drawable/ic_edger_cpu"
+            app:iconTint="@color/generic_icon_tint"
+            app:summary="@string/device_info_place_holder_unknown"
+            app:title="@string/device_info_cpu_info" />
+
+        <org.edgeration.sdk.widget.CentralImageCard
+            android:id="@+id/hardware_battery"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="@dimen/default_margin_half"
+            android:layout_marginEnd="@dimen/default_margin_half"
+            android:layout_marginBottom="@dimen/default_margin_half"
+            app:enableElevateEffect="true"
+            app:iconSrc="@drawable/ic_edger_battery"
+            app:iconTint="@color/generic_icon_tint"
+            app:summary="@string/device_info_place_holder_unknown"
+            app:title="@string/device_info_battery_info" />
+
+        <org.edgeration.sdk.widget.CentralImageCard
+            android:id="@+id/hardware_camera"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="@dimen/default_margin_half"
+            android:layout_marginBottom="@dimen/default_margin_half"
+            app:enableElevateEffect="true"
+            app:iconSrc="@drawable/ic_edger_camera"
+            app:iconTint="@color/generic_icon_tint"
+            app:summary="@string/device_info_place_holder_unknown"
+            app:title="@string/device_info_camera_info" />
+
+        <org.edgeration.sdk.widget.CentralImageCard
+            android:id="@+id/hardware_cellular"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginTop="@dimen/default_margin_half"
+            android:layout_marginEnd="@dimen/default_margin_half"
+            app:enableElevateEffect="true"
+            app:iconSrc="@drawable/ic_edger_bar_chart"
+            app:iconTint="@color/generic_icon_tint"
+            app:summary="@string/device_info_place_holder_unknown"
+            app:title="@string/device_info_cellular_info" />
+
+        <org.edgeration.sdk.widget.CentralImageCard
+            android:id="@+id/hardware_screen"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="@dimen/default_margin_half"
+            android:layout_marginTop="@dimen/default_margin_half"
+            android:layout_marginEnd="@dimen/default_margin_half"
+            app:enableElevateEffect="true"
+            app:iconSrc="@drawable/ic_edger_monitor"
+            app:iconTint="@color/generic_icon_tint"
+            app:summary="@string/device_info_place_holder_unknown"
+            app:title="@string/device_info_screen_info" />
+
+        <org.edgeration.sdk.widget.CentralImageCard
+            android:id="@+id/hardware_ram"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_marginStart="@dimen/default_margin_half"
+            android:layout_marginTop="@dimen/default_margin_half"
+            app:enableElevateEffect="true"
+            app:iconSrc="@drawable/ic_edger_layers"
+            app:iconTint="@color/generic_icon_tint"
+            app:summary="@string/device_info_place_holder_unknown"
+            app:title="@string/device_info_ram_info" />
+
+    </GridLayout>
+</LinearLayout>

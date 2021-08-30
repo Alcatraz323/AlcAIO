@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">EdgerationSDK</string>
+    <string name="storage_percentage_indicator">Used</string>
+    <string name="device_info_place_holder_unknown">Unknown</string>
+
+    <string name="device_info_edgeration_version">EdgerV</string>
+    <string name="device_info_android_version">Android</string>
+    <string name="device_info_vendor_model">Model</string>
+    <string name="device_info_cpu_info">CPU</string>
+    <string name="device_info_battery_info">Battery</string>
+    <string name="device_info_camera_info">Camera</string>
+    <string name="device_info_cellular_info">Cellular</string>
+    <string name="device_info_screen_info">Screen</string>
+    <string name="device_info_ram_info">RAM</string>
+</resources>

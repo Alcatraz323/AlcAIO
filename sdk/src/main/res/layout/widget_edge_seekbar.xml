@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/seek_back_layer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/min_height_for_seekbar"
+        android:minHeight="@dimen/min_height_for_seekbar"
+        app:cardBackgroundColor="@color/seek_bar_back_layer"
+        app:cardCornerRadius="@dimen/default_corner_radius_for_seekbar"
+        app:cardElevation="0dp" />
+
+    <RelativeLayout
+        android:id="@+id/seek_layer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/min_height_for_seekbar"
+        android:minHeight="@dimen/min_height_for_seekbar">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@color/edger_theme_color"
+            app:cardCornerRadius="@dimen/default_corner_radius_for_seekbar"
+            app:cardElevation="0dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/seek_indicator"
+            android:layout_width="@dimen/seekbar_indicator_default_radius"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/indicator_constraint_margin"
+            android:minHeight="@dimen/min_height_for_seekbar"
+            app:cardCornerRadius="@dimen/default_corner_radius_for_seekbar"
+            app:cardElevation="0dp" />
+    </RelativeLayout>
+</FrameLayout>

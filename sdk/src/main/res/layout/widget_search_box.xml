@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="@dimen/default_corner_radius"
+    app:cardElevation="0dp">
+
+    <Toolbar
+        android:id="@+id/search_action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingStart="3dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="6dp">
+
+            <SearchView
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:iconifiedByDefault="false"
+                android:paddingStart="0dp"
+                android:paddingEnd="40dp">
+
+            </SearchView>
+
+            <TextView
+                android:id="@+id/static_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/default_margin"
+                android:clickable="false"
+                android:focusable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                tools:ignore="RelativeOverlap" />
+
+            <org.edgeration.sdk.widget.ImageButton
+                android:id="@+id/search_button"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                app:backgroundAlpha="0.3"
+                app:backgroundColorTint="@color/test_blue"
+                app:cardCornerRadius="14dp"
+                app:imageSrc="@drawable/ic_baseline_search_24_blue_dark"
+                app:imageTint="@color/test_blue_dark" />
+        </RelativeLayout>
+    </Toolbar>
+</androidx.cardview.widget.CardView>

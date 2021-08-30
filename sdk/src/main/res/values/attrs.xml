@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Widgets with text -->
+    <attr name="title" format="string" />
+    <attr name="titleTextColor" format="color" />
+    <attr name="subtitle" format="string" />
+    <attr name="subtitleTextColor" format="color" />
+    <attr name="summary" format="string" />
+    <attr name="summaryTextColor" format="string" />
+
+    <!-- ContextualStabs -->
+    <attr name="imageSrc" format="reference" />
+    <attr name="imageTint" format="color" />
+    <attr name="iconSrc" format="reference" />
+    <attr name="iconTint" format="color" />
+    <attr name="blurOverlayColor" format="color" />
+    <attr name="widgetElevation" format="dimension" />
+    <attr name="widgetCornerRadius" format="dimension" />
+    <attr name="enableBlur" format="boolean" />
+    <attr name="enableElevateEffect" format="boolean" />
+
+    <attr name="maxValue" format="integer" />
+
+    <declare-styleable name="AppBar">
+        <attr name="showBackButton" format="boolean" />
+        <attr name="showMenu" format="boolean" />
+        <attr name="title" />
+        <attr name="subtitle" />
+        <attr name="titleTextColor" />
+        <attr name="subtitleTextColor" />
+        <attr name="menuRes" format="reference" />
+        <attr name="useSubtitleAsFoldedTitle" format="boolean" />
+        <attr name="allowFold" format="boolean" />
+        <attr name="enableBlur" />
+    </declare-styleable>
+
+    <declare-styleable name="AccountBar">
+        <attr name="enableBlur" />
+        <attr name="topStatusBarExtend" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="EdgeButton">
+        <attr name="title" />
+        <attr name="titleTextColor" />
+        <attr name="imageSrc" />
+        <attr name="imageTint" />
+        <attr name="iconSrc" />
+        <attr name="iconTint" />
+        <attr name="blurOverlayColor" />
+        <attr name="widgetElevation" />
+        <attr name="enableElevateEffect" />
+    </declare-styleable>
+
+    <declare-styleable name="ContextualStabPortrait">
+        <attr name="title" />
+        <attr name="summary" />
+        <attr name="titleTextColor" />
+        <attr name="summaryTextColor" />
+        <attr name="imageSrc" />
+        <attr name="imageTint" />
+        <attr name="iconSrc" />
+        <attr name="iconTint" />
+        <attr name="blurOverlayColor" />
+        <attr name="widgetElevation" />
+        <attr name="enableBlur" />
+        <attr name="enableElevateEffect" />
+    </declare-styleable>
+
+    <declare-styleable name="ContextualStabLandscape">
+        <attr name="title" />
+        <attr name="summary" />
+        <attr name="titleTextColor" />
+        <attr name="summaryTextColor" />
+        <attr name="imageSrc" />
+        <attr name="imageTint" />
+        <attr name="iconSrc" />
+        <attr name="iconTint" />
+        <attr name="blurOverlayColor" />
+        <attr name="widgetElevation" />
+        <attr name="enableBlur" />
+        <attr name="enableElevateEffect" />
+    </declare-styleable>
+
+    <declare-styleable name="ImageButton">
+        <attr name="imageSrc" />
+        <attr name="imageTint" />
+        <attr name="backgroundAlpha" format="float" />
+        <attr name="backgroundColorTint" format="color" />
+        <attr name="widgetElevation" />
+        <attr name="widgetCornerRadius" />
+        <attr name="enableElevateEffect" />
+    </declare-styleable>
+
+    <declare-styleable name="SearchBox">
+        <attr name="hint" format="string" />
+        <attr name="useAsStaticEntrance" format="boolean" />
+        <attr name="widgetElevation" />
+        <attr name="widgetCornerRadius" />
+    </declare-styleable>
+
+    <declare-styleable name="RealtimeBlurView">
+        <attr name="realtimeBlurRadius" format="dimension" />
+        <attr name="realtimeDownsampleFactor" format="float" />
+        <attr name="realtimeOverlayColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="CircularProgressView">
+        <attr name="backWidth" format="dimension" />
+        <attr name="progWidth" format="dimension" />
+        <attr name="backColor" format="color" />
+        <attr name="progColor" format="color" />
+        <attr name="progStartColor" format="color" />
+        <attr name="progFirstColor" format="color" />
+        <attr name="progress" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="CentralImageCard">
+        <attr name="title" />
+        <attr name="summary" />
+        <attr name="titleTextColor" />
+        <attr name="summaryTextColor" />
+        <attr name="iconSrc" />
+        <attr name="iconTint" />
+        <attr name="widgetElevation" />
+        <attr name="enableElevateEffect" />
+    </declare-styleable>
+
+    <declare-styleable name="EdgeSeekBar">
+        <attr name="seekLayerColor" format="color" />
+        <attr name="maxValue" />
+    </declare-styleable>
+</resources>

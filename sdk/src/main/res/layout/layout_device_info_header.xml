@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/device_info_big_component_size"
+        android:orientation="horizontal">
+
+        <org.edgeration.sdk.component.StorageCard
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1" />
+
+        <org.edgeration.sdk.component.SystemVersionCard
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <org.edgeration.sdk.component.HardwareInfoCards
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_width="match_parent"
+        android:layout_height="344dp"/>
+</LinearLayout>
