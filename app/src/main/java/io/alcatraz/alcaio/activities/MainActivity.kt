@@ -19,7 +19,6 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initialize()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
