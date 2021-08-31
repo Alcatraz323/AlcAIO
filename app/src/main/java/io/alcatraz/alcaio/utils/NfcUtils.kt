@@ -10,7 +10,6 @@ import android.nfc.*
 import android.nfc.tech.MifareUltralight
 import android.nfc.tech.Ndef
 import android.provider.Settings
-import android.widget.Toast
 import io.alcatraz.alcaio.LogBuff
 import java.io.IOException
 import java.nio.charset.Charset
@@ -19,7 +18,7 @@ import java.util.*
 class NfcUtils(activity: Activity) {
     companion object {
         private const val MIFARE_ULTRA_LIGHT_PAGE_START_OFFSET = 4
-        private const val MIFARE_ULTRA_LIGHT_PAGE_END_OFFSET = 15
+        private const val MIFARE_ULTRA_LIGHT_PAGE_END_OFFSET = 100
 
         lateinit var mNfcAdapter: NfcAdapter
         var mIntentFilter: Array<IntentFilter>? = null
@@ -99,7 +98,9 @@ class NfcUtils(activity: Activity) {
                     val currentPageBytes = ultraLightTag.readPages(currentPage)
                     bytes.addAll(currentPageBytes.asList())
                 }
-                return String(bytes.toByteArray())
+                val read = String(bytes.toByteArray())
+                val processed = read.substring(0, read.indexOf("=") + 1).replace("\n", "")
+                return processed
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -120,9 +121,6 @@ class NfcUtils(activity: Activity) {
                     pageBytes[byteIndex++] = byteArray[i]
                     if (byteIndex == 4 || i == (byteArray.size - 1)) {
                         ultraLightTag.writePage(currentPage++, pageBytes)
-                        pageBytes.forEachIndexed { index, byte ->
-                            pageBytes[index] = 0
-                        }
                         byteIndex = 0
                     }
                 }
@@ -137,7 +135,7 @@ class NfcUtils(activity: Activity) {
             }
         }
 
-        fun isNfcSupported(activity: Activity) :Boolean{
+        fun isNfcSupported(activity: Activity): Boolean {
             return activity.packageManager.hasSystemFeature(PackageManager.FEATURE_NFC)
         }
 

@@ -4,7 +4,7 @@
     <string name="main_menu_2">About</string>
     <string name="main_menu_3">Refresh</string>
     <string name="main_menu_4">Internal Log</string>
-    
+
     <string name="main_card_nfc_title">NFC Connect</string>
     <string name="main_card_nfc_indicator">AIO waiting…</string>
     <string name="main_card_nfc_indicator_not_supported">NFC not supported</string>
@@ -27,7 +27,7 @@
     <string name="nfc_connection">NFC Status</string>
     <string name="nfc_status_connected">Remote AIO connected\n%s (%s)</string>
     <string name="nfc_status_connecting">Tag confirmed, connecting</string>
-    <string name="nfc_status_disconnected">No device connected</string>
+    <string name="nfc_status_disconnected">No device connected. Ready…</string>
     <string name="nfc_status_unsupported_tag">Not a AlcAIO Tag</string>
     <string name="nfc_status_unsupported_version">Remote version(%s) not supported, application api is %s</string>
     <string name="nfc_function">Function</string>
@@ -38,6 +38,10 @@
     <string name="nfc_mac">MAC</string>
     <string name="nfc_name">Name</string>
     <string name="nfc_linker">Share link</string>
+    <string name="nfc_prop_unknown">Unknown</string>
+    <string name="nfc_put_tag">Please put your tag now</string>
+    <string name="nfc_write_tag_success">Write success</string>
+    <string name="nfc_write_tag_cancel">Write cancelled</string>
 
     <!--About-->
     <string name="au_l_1">Version</string>
@@ -48,4 +52,8 @@
     <string name="au_l_4_1">Respect to opensource</string>
     <string name="au_osp">Opensource Projects</string>
 
+    <!--AIO Functions-->
+    <string name="function_wireless_charge" translatable="false">wireless_charge</string>
+    <string name="function_charge_info" translatable="false">charge_info</string>
+    <string name="function_usb_transponder" translatable="false">usb_transponder</string>
 </resources>

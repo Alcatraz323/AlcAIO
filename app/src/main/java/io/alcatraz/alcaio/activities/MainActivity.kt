@@ -19,6 +19,7 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initialize()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -35,7 +36,7 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
                     AboutActivity::class.java
                 )
             )
-            R.id.menu_log_refresh -> initData()
+            R.id.menu_nfc_write -> initData()
             R.id.menu_main_log -> startActivity(Intent(this@MainActivity, LogActivity::class.java))
         }
         return super.onOptionsItemSelected(item)

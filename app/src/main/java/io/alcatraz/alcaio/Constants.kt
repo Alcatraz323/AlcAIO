@@ -3,6 +3,8 @@ package io.alcatraz.alcaio
 import io.alcatraz.alcaio.beans.QueryElement
 
 object Constants {
+    const val API_VERSION = "1"
+
     const val MY_PROJECT_CODE = "alcaio"
     const val MY_GITHUB = "https://github.com/Alcatraz323/"
     const val MY_GITHUB_PAGE = "https://alcatraz323.github.io/"

@@ -95,6 +95,111 @@
                     android:layout_height="1dp"
                     android:background="?android:attr/listDivider" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nfc_api_version"
+                            android:textAppearance="@android:style/Widget.Material.CompoundButton.Switch"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/nfc_connected_api"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nfc_prop_unknown" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nfc_function"
+                            android:textAppearance="@android:style/Widget.Material.CompoundButton.Switch"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/nfc_connected_function"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nfc_prop_unknown" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nfc_remote_address"
+                            android:textAppearance="@android:style/Widget.Material.CompoundButton.Switch"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/nfc_connected_remote_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nfc_prop_unknown" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/nfc_screen_off"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nfc_screen_off"
+                            android:textAppearance="@android:style/Widget.Material.CompoundButton.Switch"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nfc_linker"
+                            android:textAppearance="@android:style/Widget.Material.CompoundButton.Switch"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/nfc_connected_share_link"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nfc_prop_unknown"
+                            android:textIsSelectable="true" />
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
 
         </ScrollView>

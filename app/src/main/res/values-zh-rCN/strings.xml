@@ -29,7 +29,7 @@
     <string name="nfc_connection">NFC状态</string>
     <string name="nfc_status_connected">已连接\n%s (%s)</string>
     <string name="nfc_status_connecting">已扫描标签，正在连接</string>
-    <string name="nfc_status_disconnected">未连接</string>
+    <string name="nfc_status_disconnected">未连接, 扫描中</string>
     <string name="nfc_status_unsupported_tag">非AlcAIO标签</string>
     <string name="nfc_status_unsupported_version">不支持远端版本(%s), 本应用Api版本:%s</string>
     <string name="nfc_function">功能</string>
@@ -40,6 +40,10 @@
     <string name="nfc_mac">MAC</string>
     <string name="nfc_name">设备名称</string>
     <string name="nfc_linker">链接</string>
+    <string name="nfc_prop_unknown">未知</string>
+    <string name="nfc_put_tag">请放置标签，将自动写入</string>
+    <string name="nfc_write_tag_success">写入成功</string>
+    <string name="nfc_write_tag_cancel">取消写入</string>
 
     <!--关于-->
     <string name="au_l_1">版本</string>
