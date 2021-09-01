@@ -1,7 +1,10 @@
 package io.alcatraz.alcaio.utils
 
-object ReportUtils {
-    fun report() {
+import android.os.Build
+import io.alcatraz.alcaio.AIOApplication
 
+object ReportUtils {
+    fun genPhoneStatusReport(): String {
+        return Build.BRAND + ";" + AIOApplication.chargeInfo.convertToText()
     }
 }

@@ -47,7 +47,7 @@
                         android:id="@+id/nfc_status_card_overlay"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/base_gray_tint"
+                        android:background="@android:color/darker_gray"
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:visibility="visible">

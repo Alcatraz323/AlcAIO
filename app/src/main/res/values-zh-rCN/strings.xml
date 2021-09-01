@@ -6,6 +6,7 @@
     <string name="main_menu_2">关于</string>
     <string name="main_menu_3">刷新</string>
     <string name="main_menu_4">内部日志</string>
+    <string name="main_menu_5">服务器端</string>
 
     <string name="main_card_nfc_title">NFC连接</string>
     <string name="main_card_nfc_indicator">AIO就绪</string>

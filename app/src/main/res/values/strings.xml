@@ -4,6 +4,7 @@
     <string name="main_menu_2">About</string>
     <string name="main_menu_3">Refresh</string>
     <string name="main_menu_4">Internal Log</string>
+    <string name="main_menu_5">Server Mode</string>
 
     <string name="main_card_nfc_title">NFC Connect</string>
     <string name="main_card_nfc_indicator">AIO waiting…</string>

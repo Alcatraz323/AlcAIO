@@ -1,25 +1,28 @@
 package io.alcatraz.alcaio.activities
 
+import android.bluetooth.BluetoothAdapter
 import android.content.Intent
-import android.content.pm.PackageManager
+import android.content.IntentFilter
 import android.graphics.Color
 import android.nfc.NfcAdapter
 import android.nfc.Tag
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import io.alcatraz.alcaio.AsyncInterface
 import io.alcatraz.alcaio.Constants
 import io.alcatraz.alcaio.LogBuff
 import io.alcatraz.alcaio.R
 import io.alcatraz.alcaio.beans.AlcAIOTag
 import io.alcatraz.alcaio.databinding.DialogWriteTagBinding
 import io.alcatraz.alcaio.extended.CompatWithPipeActivity
+import io.alcatraz.alcaio.receivers.ChargeReceiver
 import io.alcatraz.alcaio.services.BLEService
 import io.alcatraz.alcaio.utils.NfcUtils
+import io.alcatraz.alcaio.utils.ReportUtils
 import kotlinx.android.synthetic.main.activity_nfc.*
+import java.lang.Exception
 
 
 class NfcActivity : CompatWithPipeActivity() {
@@ -28,6 +31,10 @@ class NfcActivity : CompatWithPipeActivity() {
     private lateinit var currentReadTag: AlcAIOTag
     private lateinit var writeDialogBinding: DialogWriteTagBinding
     private lateinit var writeDialog: AlertDialog
+    private lateinit var mBluetoothAdapter: BluetoothAdapter
+    private lateinit var mChargeReceiver: ChargeReceiver
+
+    private var mClientThread: ClientThread? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +66,11 @@ class NfcActivity : CompatWithPipeActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterChargeReceiver()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.activity_nfc_menu, menu)
         return super.onCreateOptionsMenu(menu)
@@ -80,6 +92,7 @@ class NfcActivity : CompatWithPipeActivity() {
         }
         currentReadTag = AlcAIOTag.createFromLink(tagData)
         updateView()
+        connectNfcDevice()
     }
 
     fun updateView() {
@@ -116,19 +129,19 @@ class NfcActivity : CompatWithPipeActivity() {
                 )
             }
             BLEService.Companion.BLEStatus.CONNECTING -> {
-                nfc_status_card_overlay.setBackgroundColor(Color.LTGRAY)
+                nfc_status_card_overlay.setBackgroundColor(Color.DKGRAY)
                 nfc_status_card_indicator.setText(R.string.nfc_status_connecting)
             }
             BLEService.Companion.BLEStatus.UNCONNECTED -> {
-                nfc_status_card_overlay.setBackgroundColor(Color.LTGRAY)
+                nfc_status_card_overlay.setBackgroundColor(Color.DKGRAY)
                 nfc_status_card_indicator.setText(R.string.nfc_status_disconnected)
             }
             BLEService.Companion.BLEStatus.INCORRECT_TAG -> {
-                nfc_status_card_overlay.setBackgroundColor(Color.LTGRAY)
+                nfc_status_card_overlay.setBackgroundColor(Color.RED)
                 nfc_status_card_indicator.setText(R.string.nfc_status_unsupported_tag)
             }
             BLEService.Companion.BLEStatus.MISMATCH_API -> {
-                nfc_status_card_overlay.setBackgroundColor(Color.LTGRAY)
+                nfc_status_card_overlay.setBackgroundColor(Color.RED)
                 nfc_status_card_indicator.setText(
                     String.format(
                         getString(R.string.nfc_status_unsupported_version),
@@ -141,6 +154,80 @@ class NfcActivity : CompatWithPipeActivity() {
     }
 
     fun writeWithSetData(intent: Intent?) {
+        val toWrite = genToWriteContent()
+
+        LogBuff.D("ToWrite_Final: $toWrite")
+        val tag: Tag? = intent?.getParcelableExtra(NfcAdapter.EXTRA_TAG)
+        if (tag!!.techList.asList().contains("android.nfc.tech.MifareUltralight")) {
+            NfcUtils.writeMifareUltraLight(intent, toWrite)
+        } else {
+            NfcUtils.writeNFCToTag(toWrite, intent)
+        }
+
+        toast(R.string.nfc_write_tag_success)
+        waitingForWrite = false
+        writeDialog.dismiss()
+    }
+
+    @Suppress("UNNECESSARY_SAFE_CALL")
+    fun connectNfcDevice() {
+        mClientThread?.kill()
+        mClientThread = ClientThread()
+        mClientThread?.setStatusInterface(object : AsyncInterface<BLEService.Companion.BLEStatus> {
+            override fun onDone(result: BLEService.Companion.BLEStatus) {
+                runOnUiThread {
+                    currentStatus = result
+                    updateStatusCard()
+                }
+            }
+        })
+        mClientThread?.start()
+    }
+
+    fun prepareWriteDialog() {
+        writeDialogBinding = DialogWriteTagBinding.inflate(layoutInflater)
+        writeDialogBinding.nfcToWriteApi.setText(Constants.API_VERSION.toString())
+        writeDialog = AlertDialog.Builder(this)
+            .setTitle(R.string.nfc_write_entry)
+            .setView(writeDialogBinding.root)
+            .create()
+
+        writeDialogBinding.nfcWriteCancel.setOnClickListener {
+            writeDialog.dismiss()
+            writeDialogBinding.nfcWriteConfirm.isEnabled = true
+            writeDialogBinding.nfcWriteInputGroup.isEnabled = true
+        }
+
+        writeDialog.setOnDismissListener {
+            if (waitingForWrite) {
+                toast(R.string.nfc_write_tag_cancel)
+                waitingForWrite = false
+            }
+            writeDialogBinding.nfcWriteConfirm.isEnabled = true
+            writeDialogBinding.nfcWriteInputGroup.isEnabled = true
+        }
+
+        writeDialogBinding.nfcWriteConfirm.setOnClickListener {
+            waitingForWrite = true
+            writeDialogBinding.nfcToWriteFinal.text = genToWriteContent()
+            writeDialogBinding.nfcWriteConfirm.isEnabled = false
+            writeDialogBinding.nfcWriteInputGroup.isEnabled = false
+        }
+    }
+
+    private fun initialize() {
+        NfcUtils(this)
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        currentReadTag = AlcAIOTag("", "", "", "", "", true, arrayListOf())
+        mChargeReceiver = ChargeReceiver()
+        prepareWriteDialog()
+        registerChargeReceiver()
+        setSupportActionBar(nfc_toolbar)
+        supportActionBar!!.setHomeButtonEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+    }
+
+    private fun genToWriteContent(): String {
         val funcArray = arrayListOf<String>()
         if (writeDialogBinding.nfcFunctionWirelessCharge.isChecked)
             funcArray.add(writeDialogBinding.nfcFunctionWirelessCharge.text as String)
@@ -158,52 +245,48 @@ class NfcActivity : CompatWithPipeActivity() {
             true,
             funcArray
         ).convertToLink()
-
-        LogBuff.D("ToWrite_Final: $toWrite")
-        val tag: Tag? = intent?.getParcelableExtra(NfcAdapter.EXTRA_TAG)
-        if (tag!!.techList.asList().contains("android.nfc.tech.MifareUltralight")) {
-            NfcUtils.writeMifareUltraLight(intent, toWrite)
-        } else {
-            NfcUtils.writeNFCToTag(toWrite, intent)
-        }
-
-        toast(R.string.nfc_write_tag_success)
-        waitingForWrite = false
-        writeDialog.dismiss()
+        return toWrite
     }
 
-    private fun initialize() {
-        NfcUtils(this)
-        currentReadTag = AlcAIOTag("", "", "", "", "", true, arrayListOf())
-        prepareWriteDialog()
-        setSupportActionBar(nfc_toolbar)
-        supportActionBar!!.setHomeButtonEnabled(true)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+    private fun registerChargeReceiver() {
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED)
+        registerReceiver(mChargeReceiver, intentFilter)
     }
 
-    fun prepareWriteDialog() {
-        writeDialogBinding = DialogWriteTagBinding.inflate(layoutInflater)
-        writeDialogBinding.nfcToWriteApi.setText(Constants.API_VERSION.toString())
-        writeDialog = AlertDialog.Builder(this)
-            .setTitle(R.string.nfc_write_entry)
-            .setView(writeDialogBinding.root)
-            .create()
+    private fun unregisterChargeReceiver() {
+        unregisterReceiver(mChargeReceiver)
+    }
 
-        writeDialogBinding.nfcWriteCancel.setOnClickListener {
-            writeDialog.dismiss()
-            writeDialogBinding.nfcWriteConfirm.isEnabled = true
-        }
+    private inner class ClientThread : Thread() {
+        private var statusInterface: AsyncInterface<BLEService.Companion.BLEStatus>? = null
+        private var killed = false
 
-        writeDialog.setOnDismissListener {
-            if (waitingForWrite) {
-                toast(R.string.nfc_write_tag_cancel)
-                waitingForWrite = false
+        override fun run() {
+            mBluetoothAdapter.cancelDiscovery();
+            val device = mBluetoothAdapter.getRemoteDevice(currentReadTag.mac)
+            val bleSocket = device.createRfcommSocketToServiceRecord(ServerActivity.SERVICE_UUID)
+            statusInterface?.onDone(BLEService.Companion.BLEStatus.CONNECTING)
+            try {
+                bleSocket.connect()
+                val outputStream = bleSocket.outputStream
+                statusInterface?.onDone(BLEService.Companion.BLEStatus.CONNECTED)
+                while (!killed) {
+                    outputStream?.write(ReportUtils.genPhoneStatusReport().toByteArray())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                LogBuff.E("Bluetooth client ran into exception: ${e.message}")
             }
+            statusInterface?.onDone(BLEService.Companion.BLEStatus.UNCONNECTED)
         }
 
-        writeDialogBinding.nfcWriteConfirm.setOnClickListener {
-            waitingForWrite = true
-            writeDialogBinding.nfcWriteConfirm.isEnabled = false
+        fun setStatusInterface(statusInterface: AsyncInterface<BLEService.Companion.BLEStatus>) {
+            this.statusInterface = statusInterface
+        }
+
+        fun kill() {
+            killed = true
         }
     }
 

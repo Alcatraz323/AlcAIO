@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/night_mode_colorPrimary</item>
         <item name="colorAccent">@color/lime_colorPrimary</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@android:color/darker_gray</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/black</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

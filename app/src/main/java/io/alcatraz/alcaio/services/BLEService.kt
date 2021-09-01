@@ -1,6 +1,10 @@
 package io.alcatraz.alcaio.services
 
-class BLEService {
+import android.app.Service
+import android.content.Intent
+import android.os.IBinder
+
+class BLEService : Service() {
     companion object{
         enum class BLEStatus {
             CONNECTED,
@@ -10,5 +14,9 @@ class BLEService {
             INCORRECT_TAG,
             MISMATCH_API
         }
+    }
+
+    override fun onBind(intent: Intent?): IBinder? {
+        TODO("Not yet implemented")
     }
 }

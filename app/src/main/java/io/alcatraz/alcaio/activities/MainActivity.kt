@@ -37,6 +37,12 @@ class MainActivity : CompatWithPipeActivity(), View.OnClickListener {
             )
             R.id.menu_nfc_write -> initData()
             R.id.menu_main_log -> startActivity(Intent(this@MainActivity, LogActivity::class.java))
+            R.id.menu_main_server_mode -> startActivity(
+                Intent(
+                    this@MainActivity,
+                    ServerActivity::class.java
+                )
+            )
         }
         return super.onOptionsItemSelected(item)
     }

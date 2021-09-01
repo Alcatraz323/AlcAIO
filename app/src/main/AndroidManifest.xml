@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.alcatraz.alcaio">
+
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true" />
+
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,9 +30,7 @@
         <activity android:name=".activities.NfcActivity">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
-
                 <category android:name="android.intent.category.DEFAULT" />
-
                 <data android:mimeType="*/*" />
             </intent-filter>
             <intent-filter>
@@ -35,6 +39,7 @@
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
             </intent-filter>
+
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter" />
@@ -44,6 +49,9 @@
         <activity android:name=".activities.PreferenceActivity" />
         <activity android:name=".activities.LogActivity" />
         <activity android:name=".activities.AboutActivity" />
+        <activity android:name=".activities.ServerActivity" />
+
+        <service android:name=".services.BLEService" />
     </application>
 
 </manifest>
